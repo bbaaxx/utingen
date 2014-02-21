@@ -1,0 +1,10 @@
+{
+	"folders":
+	[
+		{
+			"path": "/home/bax/Code/projects/utingen",
+            "name": "Utingen API",
+            "folder_exclude_patterns": [".bower-*", "node_modules", "public"]
+		}
+	]
+}

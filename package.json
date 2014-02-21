@@ -1,12 +1,12 @@
 {
-  "name": "mean",
-  "description": "MEAN - A Modern Stack: MongoDB, ExpressJS, AngularJS, NodeJS. (BONUS: Passport User Support).",
-  "version": "0.1.2",
-  "private": false,
-  "author": "Amos Haviv",
+  "name": "utingen",
+  "description": "Utingen - Next generation Applicant Tracking System for IT talent recruiters",
+  "version": "0.0.1",
+  "private": true,
+  "author": "Eduardo Mosqueda (bbaaxx@gmail.com)",
   "repository": {
     "type": "git",
-    "url": "https://github.com/linnovate/mean.git"
+    "url": "https://github.com/bbaaxx/utingen.git"
   },
   "engines": {
     "node": "0.10.x",
