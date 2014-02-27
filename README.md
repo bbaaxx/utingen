@@ -1,38 +1,42 @@
 # [Utingen](https://github.com/bbaaxx/utingen) [![GitHub version](https://badge.fury.io/gh/bbaaxx%2Futingen.png)](http://badge.fury.io/gh/bbaaxx%2Futingen) [![Build Status](https://api.travis-ci.org/bbaaxx/utingen.png)](http://travis-ci.org/bbaaxx/utingen) [![devDependency Status](https://david-dm.org/bbaaxx/utingen/dev-status.png?theme=shields.io)](https://david-dm.org/bbaaxx/utingen#info=devDependencies)
 
-Utingen aims at becoming an integrated talent management system with an included ATS solution. 
+Utingen aims at becoming a talent management system which is a smarter replacement for the traditional Applicant Tracking Systems (ATS's). 
 
 ## Table of contents
-
- - [What is Utingen](#what-is-utingen)
- - [Bugs and feature requests](#bugs-and-feature-requests)
- - [Documentation](#documentation)
- - [Contributing](#contributing)
- - [Special credits](#special-credits)
- - [Author](#author)
- - [Copyright and license](#copyright-and-license)
+- [What is Utingen](#what-is-utingen)
+- [Documentation](#documentation)
+- [Contributing](#contributing)
+- [Special Thanks](#special-thanks)
+- [Authors](#authors)
+- [Copyright and license](#copyright-and-license)
 
 ## What is Utingen
 
-Utingen aims at becoming an integrated talent management solution in a box.
-A talent management solution is an evolution of the traditional Application Tracking Systems into a tool that not only manages the relationsips and results of candidates and job orders but also improves the process of talent aqcuisition by delivering tools to identify, source and track a talent base trough time.
+Traditionally, Applicant Tracking Systems used by recriuitment comapnies and departments were an adaptation of what is known as a CRM but with labels that would resemble identificable portions of the recruitment process. 
+
+Overtime, the complexity of the recruitment proces has grown influenced by the high demand (particularly in the IT market) and the specialization level and branching of the talent base opening a path for the development of talent management techniques an procedures that the real recruiting experts apply nowadays.
+
+Utingen is a talent management foundation that packages lots of such techniques seamlessly rolled over a 15+ years aged recruitment process, nicely served in the form of a service that uses best-of-breed technologies. 
+
+As a result we get a very robust packaged-in-code process that is fun and easy to develop, simple but powerful and capable of growing like a katamari.
 
 ## Documentation
 
 Yet to come ...
 
-## Special credits
+## Special thanks
 
-- Big thanks to the MEAN.io stack !!
+- Big thanks to the MEAN.io stack for making things 9000+ easier.
 
-## Author
+## Authors
 
 **Eduardo Mosqueda**
-
 - <http://github.com/bbaaxx>
+**Karla Salinas**
 
 ## Contributing
-- Please include passing tests in your pull requests
+- First of all: Thanks for your help !
+- Second: We're a very (very!) small team so please include passing tests for your pull requests.
 
 ## Copyright and license
 

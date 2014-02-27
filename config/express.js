@@ -17,7 +17,7 @@ module.exports = function(app, passport, db) {
     app.locals.pretty = true;
 		// cache=memory or swig dies in NODE_ENV=production
 		app.locals.cache = 'memory';
-		
+
     // Should be placed before express.static
     // To ensure that all assets and data are compressed (utilize bandwidth)
     app.use(express.compress({
@@ -31,7 +31,10 @@ module.exports = function(app, passport, db) {
 
     // Only use logger for development environment
     if (process.env.NODE_ENV === 'development') {
+        var logFile = require('fs').
+            createWriteStream('./logs/development.log', {flags: 'w'});
         app.use(express.logger('dev'));
+        app.use(express.logger({ stream: logFile, format: 'dev'}));
     }
 
     // assign the template engine to .html files

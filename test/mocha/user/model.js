@@ -3,7 +3,8 @@
 /**
  * Module dependencies.
  */
-var should = require('should'),
+var chai = require('chai'),
+    should = chai.should(),
     mongoose = require('mongoose'),
     User = mongoose.model('User');
 

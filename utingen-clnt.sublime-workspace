@@ -5,9 +5,6 @@
 		[
 		]
 	},
-	"buffers":
-	[
-	],
 	"build_system": "",
 	"command_palette":
 	{
@@ -56,6 +53,7 @@
 	},
 	"file_history":
 	[
+		"/home/bax/Code/projects/utingen/public/views/header.html",
 		"/home/bax/Code/projects/utingen/public/views/articles/edit.html",
 		"/home/bax/Code/projects/utingen/public/js/services/articles.js",
 		"/home/bax/Code/projects/utingen/public/js/controllers/index.js",
@@ -65,7 +63,6 @@
 		"/home/bax/Code/projects/utingen/public/js/config.js",
 		"/home/bax/Code/projects/utingen/public/js/controllers/header.js",
 		"/home/bax/Code/projects/utingen/public/js/services/global.js",
-		"/home/bax/Code/projects/utingen/public/views/header.html",
 		"/home/bax/.config/sublime-text-2/Packages/User/SublimeLinter.sublime-settings",
 		"/home/bax/Code/projects/utingen/public/js/controllers/articles.js",
 		"/home/bax/.config/sublime-text-2/Packages/User/JavaScript.sublime-settings",
@@ -103,6 +100,21 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"\\|",
+			"\\n",
+			"\\|",
+			"|",
+			"\\}",
+			"\\{",
+			"\\n",
+			"\\'\\'\\'",
+			"\\'",
+			"\\\"",
+			"\\|",
+			"\\}\\,\\{",
+			"},{",
+			"\\}\\,\\{",
+			"\\|\\-",
 			"div",
 			"articles",
 			"article",
@@ -146,9 +158,23 @@
 		"highlight": true,
 		"in_selection": false,
 		"preserve_case": false,
-		"regex": false,
+		"regex": true,
 		"replace_history":
 		[
+			"\",\"",
+			"\"],\\n[\"",
+			"],\\n[",
+			"\",\"",
+			"\"]\\n}",
+			"{\\n\\t",
+			"{[",
+			",\\n",
+			"}\\n{\"",
+			"\\n{",
+			"\\n\\t},{\n",
+			"\\n\\t },{\n",
+			"\\n },{\n",
+			"},{\n",
 			"    \n"
 		],
 		"reverse": false,
@@ -157,14 +183,6 @@
 		"whole_word": false,
 		"wrap": true
 	},
-	"groups":
-	[
-		{
-			"sheets":
-			[
-			]
-		}
-	],
 	"incremental_find":
 	{
 		"height": 0.0
@@ -202,7 +220,7 @@
 	},
 	"replace":
 	{
-		"height": 0.0
+		"height": 78.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -210,6 +228,10 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"app",
+				"js/app.js"
+			],
 			[
 				"heade",
 				"views/header.html"
@@ -229,10 +251,6 @@
 			[
 				"inde",
 				"js/controllers/index.js"
-			],
-			[
-				"app",
-				"js/app.js"
 			]
 		],
 		"width": 0.0
@@ -252,7 +270,7 @@
 	"show_minimap": true,
 	"show_open_files": false,
 	"show_tabs": true,
-	"side_bar_visible": true,
+	"side_bar_visible": false,
 	"side_bar_width": 147.0,
 	"status_bar_visible": true
 }

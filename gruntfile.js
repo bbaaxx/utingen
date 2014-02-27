@@ -23,6 +23,13 @@ module.exports = function(grunt) {
                 options: {
                     livereload: true
                 }
+            },
+            mochaci: {
+                files: ['server.js', 'app/**/*.js', 'public/js/**', 'test/**/*.js'],
+                tasks: ['mochaci'],
+                options: {
+                    spawn: true
+                },
             }
         },
         jshint: {
@@ -56,11 +63,20 @@ module.exports = function(grunt) {
             }
         },
         mochaTest: {
-            options: {
-                reporter: 'spec',
-                require: 'server.js'
+            test: {
+                options: {
+                    reporter: 'spec',
+                    require: 'server.js'
+                },
+                src: ['test/mocha/**/*.js']
             },
-            src: ['test/mocha/**/*.js']
+            ci: {
+                options: {
+                    reporter: 'spec',
+                    require: 'server.js'
+                },
+                src: ['test/mocha/**/*.js']
+            },
         },
         env: {
             test: {
@@ -82,13 +98,25 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-nodemon');
     grunt.loadNpmTasks('grunt-concurrent');
     grunt.loadNpmTasks('grunt-env');
+    grunt.loadNpmTasks('grunt-notify');
 
     //Making grunt default to force in order not to break the project.
     grunt.option('force', true);
 
+    // On watch events, if the changed file is a test file then configure mochaTest to only
+    // run the tests from that file. Otherwise run all the tests
+    var mochaDefaultSrc = grunt.config.get('mochaTest.ci.src');
+    grunt.event.on('watch', function(action, filepath) {
+        grunt.config('mochaTest.ci.src', mochaDefaultSrc);
+        if (filepath.match('test/')) {
+            grunt.config('mochaTest.ci.src', filepath);
+        }
+    });
+
     //Default task(s).
     grunt.registerTask('default', ['jshint', 'concurrent']);
 
-    //Test task.
-    grunt.registerTask('test', ['env:test', 'mochaTest', 'karma:unit']);
+    //Test tasks.
+    grunt.registerTask('test', ['env:test', 'mochaTest:test', 'karma:unit']);
+    grunt.registerTask('mochaci', ['env:test', 'mochaTest:ci']);
 };
