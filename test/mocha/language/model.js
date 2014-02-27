@@ -11,12 +11,14 @@ var chai = require('chai'),
 //Globals
 var language;
 
+// Factories
+require('../../factories/api/language.factory')(chai);
+
 //The tests
 describe('<Unit Test>', function() {
     describe('Model Language:', function() {
         beforeEach(function(done) {
-            var testLang = require('config/languages').spa;
-            language = new Language(testLang);
+            language = new Language( chai.create('language') );
             done();
         });
 

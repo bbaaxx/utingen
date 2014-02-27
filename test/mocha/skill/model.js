@@ -11,18 +11,14 @@ var chai = require('chai'),
 //Globals
 var skill;
 
+// Factories
+require('../../factories/api/skill.factory')(chai);
+
 //The tests
 describe('<Unit Test>', function() {
     describe('Model Skill:', function() {
         beforeEach(function(done) {
-            skill = new Skill({
-                name: 'Test Skill',
-                dimension: [{
-                    name: 'test dimemsion',
-                    description: 'test description',
-                    scale: 100
-                }]
-            });
+            skill = new Skill( chai.create('skill') );
             done();
         });
 

@@ -13,24 +13,18 @@ var chai = require('chai'),
 var user;
 var article;
 
+// Factories
+require('../../factories/api/user.factory')(chai);
+require('../../factories/api/article.factory')(chai);
+
 //The tests
 describe('<Unit Test>', function() {
     describe('Model Article:', function() {
         beforeEach(function(done) {
-            user = new User({
-                name: 'Full name',
-                email: 'test@test.com',
-                username: 'user',
-                password: 'password'
-            });
-
+            user = new User(chai.create('user'));
             user.save(function() {
-                article = new Article({
-                    title: 'Article Title',
-                    content: 'Article Content',
-                    user: user
-                });
-
+                article = new Article( chai.create('article') );
+                article.user = user;
                 done();
             });
         });

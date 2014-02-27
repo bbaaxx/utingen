@@ -10,84 +10,30 @@ var chai = require('chai'),
     Language = mongoose.model('Language'),
     Skill = mongoose.model('Skill');
 
-
 //Globals
-
 var profile, language, skill;
 
 // Factories
-var tstLng = require('config/languages').spa;
-var tstSkl = {
-    name: 'Test Skill',
-    dimension: [{
-        name: 'test dimemsion',
-        description: 'test description',
-        scale: 100
-    }]
-};
+require('../../factories/api/profile.factory')(chai);
+require('../../factories/api/language.factory')(chai);
+require('../../factories/api/skill.factory')(chai);
 
 //The tests
 describe('<Unit Test>', function() {
     describe('Model Profile:', function() {
 
         beforeEach(function(done) {
-
-            language = new Language(tstLng);
-            skill = new Skill(tstSkl);
-
+            language = new Language(chai.create('language'));
+            skill = new Skill(chai.create('skill'));
             language.save(function(){
                 skill.save(function(){
-
-                    profile = new Profile({
-                        ident: {
-                            name: 'Test profile 1',
-                            description: 'Lorem ipsum description',
-                            version: '1.0.0'
-                        },
-                        data: {
-                            summaries: [
-                                'Lorem ipsum summary 1',
-                                'Lorem ipsum summary 2'
-                            ],
-                            degrees: [
-                                {
-                                    name: 'Test degree name',
-                                    major: 'Test major',
-                                    entity: 'Test entity',
-                                    generation: '2014-2015',
-                                    certifications: [{
-                                        name: 'Test cert 1',
-                                        description: 'Description for test cert 1'
-                                    }]
-                                }
-                            ],
-                            techSkills: [
-                                {
-                                    skill: skill,
-                                    proficencies: [{
-                                        dimension: 'test dimension',
-                                        value: 50
-                                    }]
-                                }
-                            ],
-                            softSkills: [
-                                {
-                                    skill: skill,
-                                    proficencies: [{
-                                        dimension: 'test dimension',
-                                        value: 20
-                                    }]
-                                }
-                            ],
-                        }
-                    });
-
+                    profile = new Profile(chai.create('profile'));
+                    profile.data.softSkills[0].skill = skill;
+                    profile.data.techSkills[0].skill = skill;
                     done();
-
                 });
             });
         });
-
 
         describe('Method Save', function() {
 
