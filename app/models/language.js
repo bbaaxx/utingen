@@ -1,3 +1,10 @@
+/**
+ * TO-DO:
+ *      - promotedBy: { <user> } field to be implemented along with ua
+ *      - Improve the model by replacing the data source for languages
+ *        to support translation
+ */
+
 'use strict';
 
 /**

@@ -1,3 +1,8 @@
+/**
+ * TO-DO:
+ *      - promotedBy: { <user> } field to be implemented along with ua
+ */
+
 'use strict';
 
 /**

@@ -1,3 +1,10 @@
+/**
+ * TO-DO:
+ *      - !!! Add validation for qualifications
+ *      - promotedBy: { <user> } field to be implemented along with ua
+ *      - probably move summaries property to its own model
+ */
+
 'use strict';
 
 /**
