@@ -18,29 +18,27 @@ var mongoose = require('mongoose'),
  * Profile Schema
  */
 var ProfileSchema = new Schema({
-    ident: {
-        name: {
-            type: String,
-            default: '',
-            trim: true
-        },
-        description: {
-            type: String,
-            default: '',
-            trim: true
-        },
-        created: {
-            type: Date,
-            default: Date.now
-        },
-        updated: {
-            type: Date,
-            default: Date.now
-        },
-        version: {
-            type: String,
-            trim: true
-        }
+    name: {
+        type: String,
+        default: '',
+        trim: true
+    },
+    description: {
+        type: String,
+        default: '',
+        trim: true
+    },
+    created: {
+        type: Date,
+        default: Date.now
+    },
+    updated: {
+        type: Date,
+        default: Date.now
+    },
+    version: {
+        type: String,
+        trim: true
     },
     data: {
         summaries:  [{
@@ -49,62 +47,20 @@ var ProfileSchema = new Schema({
             trim: true
         }],
         techSkills: [{
-            skill: {
-                type: Schema.ObjectId,
-                ref: 'Skill'
-            },
-            proficencies: [{
-                dimension: {type: String, trim: true},
-                value: {type: Number, default: 0}
-            }]
+            type: Schema.ObjectId,
+            ref: 'Skill'
         }],
         softSkills:  [{
-            skill: {
-                type: Schema.ObjectId,
-                ref: 'Skill'
-            },
-            proficencies: [{
-                dimension: {type: String, trim: true},
-                value: {type: Number, default: 0}
-            }]
+            type: Schema.ObjectId,
+            ref: 'Skill'
         }],
-        degrees: [{
-            name: {
-                type: String,
-                default: '',
-                trim: true
-            },
-            major: {
-                type: String,
-                default: '',
-                trim: true
-            },
-            entity: {
-                type: String,
-                default: '',
-                trim: true
-            },
-            generation: {
-                type: String,
-                default: '',
-                trim: true
-            },
-            certifications: [{
-                name: {
-                    type: String,
-                    default: '',
-                    trim: true
-                },
-                description: {
-                    type: String,
-                    default: '',
-                    trim: true
-                }
-            }]
+        qualifications: [{
+            type: Schema.ObjectId,
+            ref: 'Qualification'
         }],
         languages: [{
             lang: {
-                type: Schema.Types.ObjectId,
+                type: Schema.ObjectId,
                 ref: 'Language'
             },
             proficencies: [{
@@ -126,7 +82,7 @@ var ProfileSchema = new Schema({
 /**
  * Validations
  */
-ProfileSchema.path('ident.name').validate(function(name) {
+ProfileSchema.path('name').validate(function(name) {
     return name.length;
 }, 'Title cannot be blank');
 
