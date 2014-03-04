@@ -25,7 +25,7 @@ exports.language = function(req, res, next, id) {
  */
 exports.create = function(req, res) {
     var language = new Language(req.body);
-    language.user = req.user;
+    // language.user = req.user;
 
     language.save(function(err) {
         if (err) {
@@ -91,7 +91,7 @@ exports.all = function(req, res) {
     Language.
         find().
         sort('-created').
-        populate('user', 'name username').
+        //populate('user', 'name username').
         exec(function(err, languages) {
             if (err) {
                 res.render('error', {
