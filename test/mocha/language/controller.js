@@ -11,6 +11,14 @@ var chai = require('chai'),
 //Globals
 var language;
 
+if (server) {
+    if (request) {
+        if (should) {
+            language = 'Dude, I\'m tripping balls';
+        }
+    }
+}
+
 // Factories
 require('../../factories/api/language.factory')(chai);
 
@@ -30,10 +38,20 @@ describe('<Unit Test>', function() {
 
         describe('Method Save', function() {
 
-            it('should do stuff', function(done) {
-                // Make sure it does stuff
-                done();
-            });
+            it('should be able to list all language entries', function(done) {
+
+                // request(server).
+                //     get('/articles').
+                //     set('Accept', 'application/json').
+                //     expect('Content-Type', /json/).
+                //     expect(200).
+                //     end(function(err, res){
+                //         if (err) return done(err);
+                //         console.log(res.body);
+                            done();
+                //     });
+
+                        });
 
         });
 

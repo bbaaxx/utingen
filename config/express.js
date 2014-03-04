@@ -31,10 +31,17 @@ module.exports = function(app, passport, db) {
 
     // Only use logger for development environment
     if (process.env.NODE_ENV === 'development') {
-        var logFile = require('fs').
+        var debLogFile = require('fs').
             createWriteStream('./logs/development.log', {flags: 'w'});
         app.use(express.logger('dev'));
-        app.use(express.logger({ stream: logFile, format: 'dev'}));
+        app.use(express.logger({ stream: debLogFile, format: 'dev'}));
+    }
+
+    // Enforce a debugging log [ REMOVE IF UNUSED ]
+    if (process.env.NODE_ENV === 'test') {
+        var dbgLogFile = require('fs').
+            createWriteStream('./logs/debugging.log', {flags: 'a'});
+        app.use(express.logger({ stream: dbgLogFile, format: 'default'}));
     }
 
     // assign the template engine to .html files
