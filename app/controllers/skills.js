@@ -43,7 +43,6 @@ exports.create = function(req, res) {
  */
 exports.update = function(req, res) {
     var skill = req.skill;
-
     skill = _.extend(skill, req.body);
 
     skill.save(function(err) {
@@ -89,7 +88,7 @@ exports.show = function(req, res) {
 exports.all = function(req, res) {
     Skill.
         find().
-        //sort('-created').
+        sort('-name').
         //populate('user', 'name username').
         exec(function(err, skills) {
             if (err) {
