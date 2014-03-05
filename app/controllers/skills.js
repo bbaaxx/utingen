@@ -4,99 +4,100 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
-    Language = mongoose.model('Language'),
+    Skill = mongoose.model('Skill'),
     _ = require('lodash');
 
 
 /**
- * Find language by id
+ * Find skill by id
  */
-exports.language = function(req, res, next, id) {
-    Language.load(id, function(err, language) {
+exports.skill = function(req, res, next, id) {
+    Skill.load(id, function(err, skill) {
         if (err) return next(err);
-        if (!language) return next(new Error('Failed to load language ' + id));
-        req.language = language;
+        if (!skill) return next(new Error('Failed to load skill ' + id));
+        req.skill = skill;
         next();
     });
 };
 
 /**
- * Create a language
+ * Create a skill
  */
 exports.create = function(req, res) {
-    var language = new Language(req.body);
-    // language.user = req.user;
-    language.save(function(err) {
+    var skill = new Skill(req.body);
+    // skill.user = req.user;
+    skill.save(function(err) {
         if (err) {
             return res.send('users/signup', {
                 errors: err.errors,
-                language: language
+                skill: skill
             });
         } else {
-            res.jsonp(language);
+            res.jsonp(skill);
         }
     });
 };
 
 /**
- * Update a language
+ * Update a skill
  */
 exports.update = function(req, res) {
-    var language = req.language;
-    language = _.extend(language, req.body);
+    var skill = req.skill;
 
-    language.save(function(err) {
+    skill = _.extend(skill, req.body);
+
+    skill.save(function(err) {
         if (err) {
             return res.send('users/signup', {
                 errors: err.errors,
-                language: language
+                skill: skill
             });
         } else {
-            res.jsonp(language);
+            res.jsonp(skill);
         }
     });
 };
 
 /**
- * Delete a language
+ * Delete a skill
  */
 exports.destroy = function(req, res) {
-    var language = req.language;
+    var skill = req.skill;
 
-    language.remove(function(err) {
+    skill.remove(function(err) {
         if (err) {
             return res.send('users/signup', {
                 errors: err.errors,
-                language: language
+                skill: skill
             });
         } else {
-            res.jsonp(language);
+            res.jsonp(skill);
         }
     });
 };
 
 /**
- * Show a language
+ * Show a skill
  */
 exports.show = function(req, res) {
-    res.jsonp(req.language);
+    res.jsonp(req.skill);
 };
 
 /**
  * List of Languages
  */
 exports.all = function(req, res) {
-    Language.
+    Skill.
         find().
-        sort('-name').
+        //sort('-created').
         //populate('user', 'name username').
-        exec(function(err, languages) {
+        exec(function(err, skills) {
             if (err) {
                 res.render('error', {
                     status: 500
                 });
             } else {
-                res.jsonp(languages);
+                res.jsonp(skills);
             }
         });
 };
