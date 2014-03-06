@@ -16,24 +16,24 @@
 var chai = require('chai'),
     expect = chai.expect,
     mongoose = require('mongoose'),
-    Skill = mongoose.model('Skill'),
-    controller = require( process.cwd() + '/app/controllers/skills');
+    Qualification = mongoose.model('Qualification'),
+    controller = require( process.cwd() + '/app/controllers/qualifications');
 
 //Globals
-var skill, req = {}, res = {}, mutProp;
+var qualification, req = {}, res = {}, mutProp;
 
 // Factories
-require('../../factories/api/skill.factory')(chai);
+require('../../factories/api/qualification.factory')(chai);
 
 //The tests
 describe('<Unit Test>', function() {
-    describe('Controller Skills:', function() {
+    describe('Controller Qualifications:', function() {
         before(function(done){
-            for (var _key in Skill.schema.paths){
-                if (Skill.schema.paths[_key].path !== '_id' &&
-                    Skill.schema.paths[_key].path !== '__v' &&
-                    Skill.schema.paths[_key].instance === 'String' &&
-                    Skill.schema.paths[_key].validators.length > 0) {
+            for (var _key in Qualification.schema.paths){
+                if (Qualification.schema.paths[_key].path !== '_id' &&
+                    Qualification.schema.paths[_key].path !== '__v' &&
+                    Qualification.schema.paths[_key].instance === 'String' &&
+                    Qualification.schema.paths[_key].validators.length > 0) {
 
                     mutProp = _key;
                 }
@@ -42,32 +42,32 @@ describe('<Unit Test>', function() {
         });
 
 
-        describe('Method skill', function() {
+        describe('Method qualification', function() {
             beforeEach(function(done) {
-                skill = new Skill( chai.create('skill') );
-                skill.save(done);
+                qualification = new Qualification( chai.create('qualification') );
+                qualification.save(done);
             });
 
             it('Should return an \'application/json\' object with '+
-                'the requested skill document', function(done){
-                    controller.skill(req,res,function(err){
+                'the requested qualification document', function(done){
+                    controller.qualification(req,res,function(err){
                         expect(err).to.not.exist;
-                        expect(req.skill._id).
+                        expect(req.qualification._id).
                             to.be.an.instanceOf(mongoose.Types.ObjectId);
-                        expect(req.skill.__v).to.exist;
+                        expect(req.qualification.__v).to.exist;
                         done();
-                    },skill._id);
+                    },qualification._id);
                 });
             it('Should return an error if the requested document is not found',
                 function(done){
-                    controller.skill(req,res,function(err){
+                    controller.qualification(req,res,function(err){
                         expect(err).to.exist;
                         done();
                     }, mongoose.Types.ObjectId());
                 });
             it('Should return an error if the parameter is not a document id',
                 function(done){
-                    controller.skill(req,res,function(err){
+                    controller.qualification(req,res,function(err){
                         expect(err).to.exist;
                         done();
                     }, 'dudelydoo');
@@ -77,10 +77,10 @@ describe('<Unit Test>', function() {
         describe('Method create', function() {
             it('Should store and return a jsonp representation '+
                 ' of the document', function(done) {
-                    req.body = chai.create('skill');
+                    req.body = chai.create('qualification');
                     res = {
-                        jsonp: function(_skill) {
-                            expect(_skill.__v).to.exist;
+                        jsonp: function(_qualification) {
+                            expect(_qualification.__v).to.exist;
                             done();
                         },
                         send: function(_redir,_errObj) {
@@ -94,8 +94,8 @@ describe('<Unit Test>', function() {
                 'if request body is empty', function(done) {
                     req.body = {};
                     res = {
-                        jsonp: function(_skill) {
-                            expect(_skill.__v).to.not.exist;
+                        jsonp: function(_qualification) {
+                            expect(_qualification.__v).to.not.exist;
                             done();
                         },
                         send: function(_redir,_errObj) {
@@ -110,20 +110,20 @@ describe('<Unit Test>', function() {
 
         describe('Method update', function() {
             beforeEach(function(done) {
-                skill = new Skill( chai.create('skill') );
-                skill.save(done);
+                qualification = new Qualification( chai.create('qualification') );
+                qualification.save(done);
             });
 
             it('Should update and return a jsonp representation '+
                 ' of the document', function(done) {
-                    req.skill = skill;
+                    req.qualification = qualification;
                     req.body = {};
                     req.body[mutProp] = 'utingen_testing_happens';
 
                     res = {
-                        jsonp: function(_skill) {
-                            expect(_skill._id).to.equal(skill._id);
-                            expect(_skill[mutProp]).to.equal('utingen_testing_happens');
+                        jsonp: function(_qualification) {
+                            expect(_qualification._id).to.equal(qualification._id);
+                            expect(_qualification[mutProp]).to.equal('utingen_testing_happens');
                             done();
                         },
                         send: function(_redir,_errObj) {
@@ -135,13 +135,13 @@ describe('<Unit Test>', function() {
                 });
             it('Should set a redirect and return an error object '+
                 'if request parameters are not valid', function(done) {
-                    req.skill = skill;
+                    req.qualification = qualification;
                     req.body = {};
                     req.body[mutProp] = '';
 
                     res = {
-                        jsonp: function(_skill) {
-                            expect(_skill.__v).to.not.exist;
+                        jsonp: function(_qualification) {
+                            expect(_qualification.__v).to.not.exist;
                             done();
                         },
                         send: function(_redir,_errObj) {
@@ -156,16 +156,16 @@ describe('<Unit Test>', function() {
 
         describe('Method destroy', function() {
             beforeEach(function(done) {
-                skill = new Skill( chai.create('skill') );
-                skill.save(done);
+                qualification = new Qualification( chai.create('qualification') );
+                qualification.save(done);
             });
 
             it('Should remove the document and return a jsonp representation '+
                 ' of the document', function(done) {
-                    req.skill = skill;
+                    req.qualification = qualification;
                     res = {
-                        jsonp: function(_skill) {
-                            expect(_skill._id).to.equal(skill._id);
+                        jsonp: function(_qualification) {
+                            expect(_qualification._id).to.equal(qualification._id);
                             done();
                         },
                         send: function(_redir,_errObj) {
@@ -180,16 +180,16 @@ describe('<Unit Test>', function() {
 
         describe('Method show', function() {
             beforeEach(function(done) {
-                skill = new Skill( chai.create('skill') );
-                skill.save(done);
+                qualification = new Qualification( chai.create('qualification') );
+                qualification.save(done);
             });
 
             it('Should return a jsonp representation '+
                 ' of the requested document', function(done) {
-                    req.skill = skill;
+                    req.qualification = qualification;
                     res = {
-                        jsonp: function(_skill) {
-                            expect(_skill._id).to.equal(skill._id);
+                        jsonp: function(_qualification) {
+                            expect(_qualification._id).to.equal(qualification._id);
                             done();
                         },
                         send: function(_redir,_errObj) {
@@ -203,16 +203,16 @@ describe('<Unit Test>', function() {
 
         describe('Method all', function() {
             beforeEach(function(done) {
-                skill = new Skill( chai.create('skill') );
-                skill.save(done);
+                qualification = new Qualification( chai.create('qualification') );
+                qualification.save(done);
             });
 
             it('Should return a jsonp representation '+
                 ' of all the documents in the collection', function(done) {
                     res = {
-                        jsonp: function(_skill) {
-                            // console.log(_skill);
-                            expect(_skill).to.be.an('Array');
+                        jsonp: function(_qualification) {
+                            // console.log(_qualification);
+                            expect(_qualification).to.be.an('Array');
                             done();
                         },
                         send: function(_redir,_errObj) {
@@ -226,8 +226,8 @@ describe('<Unit Test>', function() {
 
 
         afterEach(function(done) {
-            Skill.remove({}, function(){
-                skill = {};
+            Qualification.remove({}, function(){
+                qualification = {};
                 req = {};
                 res = {};
                 done();
