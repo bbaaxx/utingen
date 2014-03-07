@@ -1,0 +1,11 @@
+<section data-ng-controller="DossiersController" data-ng-init="find()">
+	<ul class="dossiers unstyled">
+		<li data-ng-repeat="dossier in dossiers">
+			<span>{{dossier.created | date:'medium'}}</span> /
+			<span>{{dossier.user.name}}</span>
+			<h2><a data-ng-href="#!/dossiers/{{dossier._id}}">{{dossier.title}}</a></h2>
+			<div>{{dossier.content}}</div>
+		</li>
+	</ul>
+	<h1 data-ng-hide="!dossiers || dossiers.length">No dossiers yet. <br> Why don't you <a href="/#!/dossiers/create">Create One</a>?</h1>
+</section>

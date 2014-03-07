@@ -24,6 +24,24 @@ angular.module('mean').config(['$stateProvider', '$urlRouterProvider',
         url: '/articles/:articleId',
         templateUrl: 'views/articles/view.html'
     })
+
+      .state('all dossiers', {
+        url: '/dossiers',
+        templateUrl: 'views/dossiers/list.html'
+    })
+      .state('create dossier', {
+        url: '/dossiers/create',
+        templateUrl: 'views/dossiers/create.html'
+    })
+      .state('edit dossier', {
+        url: '/dossiers/:dossierId/edit',
+        templateUrl: 'views/dossiers/edit.html'
+    })
+      .state('dossier by id', {
+        url: '/dossiers/:dossierId',
+        templateUrl: 'views/dossiers/view.html'
+    })
+
       .state('home', {
         url: '/',
         templateUrl: 'views/index.html'

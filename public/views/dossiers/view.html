@@ -1,0 +1,14 @@
+<section data-ng-controller="DossiersController" data-ng-init="findOne()">
+    <span>{{dossier.created | date:'medium'}}</span> /
+    <span>{{dossier.user.name}}</span>
+    <h2>{{dossier.title}}</h2>
+    <div data-ng-show="global.user._id == dossier.user._id">
+        <a class="btn" href="/#!/dossiers/{{dossier._id}}/edit">
+        	<i class="glyphicon glyphicon-edit"></i>
+        </a>
+        <a class="btn" data-ng-click="remove();">
+            <i class="glyphicon glyphicon-trash"></i>
+        </a>
+    </div>
+    <div>{{dossier.content}}</div>
+</section>
