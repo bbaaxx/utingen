@@ -7,9 +7,11 @@ angular.module('mean', [
     'ui.router',
     'mean.system',
     'mean.articles',
-    'utingen.dossiers'
+    'utingen.skills',
+    'utingen.profiles'
 ]);
 
 angular.module('mean.system', []);
 angular.module('mean.articles', []);
-angular.module('utingen.dossiers', []);
+angular.module('utingen.skills', []);
+angular.module('utingen.profiles', []);

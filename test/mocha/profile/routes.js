@@ -10,25 +10,25 @@ var server = require('server'),
     expect = chai.expect,
     request = require('supertest'),
     mongoose = require('mongoose'),
-    Language = mongoose.model('Language');
+    Profile = mongoose.model('Profile');
 
 //Globals
-var language;
+var profile;
 
 // Factories
-require('../../factories/api/language.factory')(chai);
+require('../../factories/api/profile.factory')(chai);
 
 //The tests
 describe('<Unit Test>', function() {
-    describe('Routes for Language controller:', function() {
+    describe('Routes for Profile controller:', function() {
 
 
-        describe('Route "/languages"', function() {
+        describe('Route "/profiles"', function() {
 
             describe('Method: GET',function(){
                 it('Should be 200 and return \'application/json\' content', function(done) {
                     request(server).
-                        get('/languages').
+                        get('/profiles').
                         set('Accept', 'application/json').
                         expect('Content-Type', /json/).
                         expect(200, done);
@@ -39,8 +39,8 @@ describe('<Unit Test>', function() {
 
                 it('Should be 200 and return \'application/json\' content', function(done) {
                     request(server).
-                        post('/languages').
-                        send( chai.create('language') ).
+                        post('/profiles').
+                        send( chai.create('profile') ).
                         set('Accept', 'application/json').
                         expect('Content-Type', /json/).
                         expect(200, done);
@@ -49,7 +49,7 @@ describe('<Unit Test>', function() {
                 it('Should be 200 and return a JSON error if no data comes '+
                     'in the request', function(done) {
                     request(server).
-                        post('/languages').
+                        post('/profiles').
                         set('Accept', 'application/json').
                         expect('Content-Type', /json/).
                         expect(200).
@@ -63,20 +63,20 @@ describe('<Unit Test>', function() {
 
         });
 
-        describe('Route "/language/:languageId"', function(){
+        describe('Route "/profile/:profileId"', function(){
             before(function(done){
-                language = new Language( chai.create('language') );
+                profile = new Profile( chai.create('profile') );
                 done();
             });
             beforeEach(function(done) {
-                language.save(done);
+                profile.save(done);
             });
 
             describe('Method: GET', function(){
 
                 it('Should be 200 and return \'application/json\' content', function(done){
                     request(server).
-                        get('/languages/'+language._id).
+                        get('/profiles/'+profile._id).
                         set('Accept', 'application/json').
                         expect('Content-Type', /json/).
                         expect(200).
@@ -91,12 +91,12 @@ describe('<Unit Test>', function() {
             describe('Method: PUT', function(){
 
                 it('Should be 200 and return \'application/json\' content', function(done){
-                    var _language = chai.create('language');
-                    _language.name = 'Nahuatl';
+                    var _profile = chai.create('profile');
+                    _profile.name = 'Nahuatl';
                     request(server).
-                        put('/languages/'+language._id).
+                        put('/profiles/'+profile._id).
                         set('Accept', 'application/json').
-                        send(_language).
+                        send(_profile).
                         expect('Content-Type', /json/).
                         expect(200,done);
                 });
@@ -107,7 +107,7 @@ describe('<Unit Test>', function() {
 
                 it('Should be 200 and return \'application/json\' content', function(done){
                     request(server).
-                        del('/languages/'+language._id).
+                        del('/profiles/'+profile._id).
                         set('Accept', 'application/json').
                         expect('Content-Type', /json/).
                         expect(200,done);
@@ -116,11 +116,11 @@ describe('<Unit Test>', function() {
             });
 
             afterEach(function(done) {
-                Language.remove({});
+                Profile.remove({});
                 done();
             });
             after(function(done) {
-                Language.remove().exec();
+                Profile.remove().exec();
                 done();
             });
         });

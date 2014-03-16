@@ -83,7 +83,7 @@ exports.show = function(req, res) {
 };
 
 /**
- * List of Languages
+ * List of Skills
  */
 exports.all = function(req, res) {
     Skill.
@@ -97,6 +97,22 @@ exports.all = function(req, res) {
                 });
             } else {
                 res.jsonp(skills);
+            }
+        });
+};
+
+/**
+ * Instant Search
+ */
+exports.instaSearch = function(req, res) {
+    Skill.
+        instaSearch(req.params.isQry.toString(), function(err,resultsArry){
+            if (err) {
+                res.render('error', {
+                    status: 500
+                });
+            } else {
+                res.jsonp(resultsArry);
             }
         });
 };

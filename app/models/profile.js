@@ -38,37 +38,38 @@ var ProfileSchema = new Schema({
     },
     version: {
         type: String,
+        default: '0.0',
         trim: true
     },
-    data: {
-        summaries:  [{
-            type: String,
-            default: '',
-            trim: true
-        }],
-        techSkills: [{
-            type: Schema.ObjectId,
-            ref: 'Skill'
-        }],
-        softSkills:  [{
-            type: Schema.ObjectId,
-            ref: 'Skill'
-        }],
-        qualifications: [{
-            type: Schema.ObjectId,
-            ref: 'Qualification'
-        }],
-        languages: [{
-            lang: {
-                type: Schema.ObjectId,
-                ref: 'Language'
-            },
-            proficencies: [{
-                dimension: {type: String, trim: true},
-                value: {type: Number, default: 0}
-            }]
-        }]
-    },
+    summaries:  [{
+        type: String,
+        default: '',
+        trim: true
+    }],
+    techSkills: [{
+        type: Schema.ObjectId,
+        ref: 'Skill'
+    }],
+    softSkills:  [{
+        type: Schema.ObjectId,
+        ref: 'Skill'
+    }],
+    otherSkills:  [{
+        type: Schema.ObjectId,
+        ref: 'Skill'
+    }],
+    qualifications: [{
+        type: Schema.ObjectId,
+        ref: 'Qualification'
+    }],
+    languages: [{
+        type: Schema.ObjectId,
+        ref: 'Language'
+    }],
+    positions: [{
+        type: Schema.ObjectId,
+        ref: 'Position'
+    }],
     versions: [{type: Object}]
 });
 
@@ -89,10 +90,11 @@ ProfileSchema.path('name').validate(function(name) {
 /**
  * Statics
  */
-// ProfileSchema.statics.load = function(id, cb) {
-//     this.findOne({
-//         _id: id
-//     }).populate('user', 'name username').exec(cb);
-// };
+ProfileSchema.statics.load = function(id, cb) {
+    this.
+        findOne({ _id: id }).
+        // populate('user', 'name username').
+        exec(cb);
+};
 
 mongoose.model('Profile', ProfileSchema);

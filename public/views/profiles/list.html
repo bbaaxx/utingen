@@ -1,0 +1,11 @@
+<section data-ng-controller="ProfilesController" data-ng-init="find()">
+	<ul class="profiles unstyled">
+		<li data-ng-repeat="profile in profiles">
+			<span>{{profile.created | date:'medium'}}</span> /
+			<span>{{profile.user.name}}</span>
+			<h2><a data-ng-href="#!/profiles/{{profile._id}}">{{profile.title}}</a></h2>
+			<div>{{profile.content}}</div>
+		</li>
+	</ul>
+	<h1 data-ng-hide="!profiles || profiles.length">No profiles yet. <br> Why don't you <a href="/#!/profiles/create">Create One</a>?</h1>
+</section>

@@ -16,24 +16,24 @@
 var chai = require('chai'),
     expect = chai.expect,
     mongoose = require('mongoose'),
-    Language = mongoose.model('Language'),
-    controller = require( process.cwd() + '/app/controllers/languages');
+    Profile = mongoose.model('Profile'),
+    controller = require( process.cwd() + '/app/controllers/profiles');
 
 //Globals
-var language, req = {}, res = {}, mutProp;
+var profile, req = {}, res = {}, mutProp;
 
 // Factories
-require('../../factories/api/language.factory')(chai);
+require('../../factories/api/profile.factory')(chai);
 
 //The tests
 describe('<Unit Test>', function() {
-    describe('Controller Languages:', function() {
+    describe('Controller Profiles:', function() {
         before(function(done){
-            for (var _key in Language.schema.paths){
-                if (Language.schema.paths[_key].path !== '_id' &&
-                    Language.schema.paths[_key].path !== '__v' &&
-                    Language.schema.paths[_key].instance === 'String' &&
-                    Language.schema.paths[_key].validators.length > 0) {
+            for (var _key in Profile.schema.paths){
+                if (Profile.schema.paths[_key].path !== '_id' &&
+                    Profile.schema.paths[_key].path !== '__v' &&
+                    Profile.schema.paths[_key].instance === 'String' &&
+                    Profile.schema.paths[_key].validators.length > 0) {
 
                     mutProp = _key;
                 }
@@ -42,32 +42,32 @@ describe('<Unit Test>', function() {
         });
 
 
-        describe('Method language', function() {
+        describe('Method profile', function() {
             beforeEach(function(done) {
-                language = new Language( chai.create('language') );
-                language.save(done);
+                profile = new Profile( chai.create('profile') );
+                profile.save(done);
             });
 
             it('Should return an \'application/json\' object with '+
-                'the requested language document', function(done){
-                    controller.language(req,res,function(err){
+                'the requested profile document', function(done){
+                    controller.profile(req,res,function(err){
                         expect(err).to.not.exist;
-                        expect(req.language._id).
+                        expect(req.profile._id).
                             to.be.an.instanceOf(mongoose.Types.ObjectId);
-                        expect(req.language.__v).to.exist;
+                        expect(req.profile.__v).to.exist;
                         done();
-                    },language._id);
+                    },profile._id);
                 });
             it('Should return an error if the requested document is not found',
                 function(done){
-                    controller.language(req,res,function(err){
+                    controller.profile(req,res,function(err){
                         expect(err).to.exist;
                         done();
                     }, mongoose.Types.ObjectId());
                 });
             it('Should return an error if the parameter is not a document id',
                 function(done){
-                    controller.language(req,res,function(err){
+                    controller.profile(req,res,function(err){
                         expect(err).to.exist;
                         done();
                     }, 'dudelydoo');
@@ -77,10 +77,10 @@ describe('<Unit Test>', function() {
         describe('Method create', function() {
             it('Should store and return a jsonp representation '+
                 ' of the document', function(done) {
-                    req.body = chai.create('language');
+                    req.body = chai.create('profile');
                     res = {
-                        jsonp: function(_language) {
-                            expect(_language.__v).to.exist;
+                        jsonp: function(_profile) {
+                            expect(_profile.__v).to.exist;
                             done();
                         },
                         send: function(_redir,_errObj) {
@@ -94,8 +94,8 @@ describe('<Unit Test>', function() {
                 'if request body is empty', function(done) {
                     req.body = {};
                     res = {
-                        jsonp: function(_language) {
-                            expect(_language.__v).to.not.exist;
+                        jsonp: function(_profile) {
+                            expect(_profile.__v).to.not.exist;
                             done();
                         },
                         send: function(_redir,_errObj) {
@@ -110,20 +110,20 @@ describe('<Unit Test>', function() {
 
         describe('Method update', function() {
             beforeEach(function(done) {
-                language = new Language( chai.create('language') );
-                language.save(done);
+                profile = new Profile( chai.create('profile') );
+                profile.save(done);
             });
 
             it('Should update and return a jsonp representation '+
                 ' of the document', function(done) {
-                    req.language = language;
+                    req.profile = profile;
                     req.body = {};
                     req.body[mutProp] = 'utingen_testing_happens';
 
                     res = {
-                        jsonp: function(_language) {
-                            expect(_language._id).to.equal(language._id);
-                            expect(_language[mutProp]).to.equal('utingen_testing_happens');
+                        jsonp: function(_profile) {
+                            expect(_profile._id).to.equal(profile._id);
+                            expect(_profile[mutProp]).to.equal('utingen_testing_happens');
                             done();
                         },
                         send: function(_redir,_errObj) {
@@ -135,13 +135,13 @@ describe('<Unit Test>', function() {
                 });
             it('Should set a redirect and return an error object '+
                 'if request parameters are not valid', function(done) {
-                    req.language = language;
+                    req.profile = profile;
                     req.body = {};
                     req.body[mutProp] = '';
 
                     res = {
-                        jsonp: function(_language) {
-                            expect(_language.__v).to.not.exist;
+                        jsonp: function(_profile) {
+                            expect(_profile.__v).to.not.exist;
                             done();
                         },
                         send: function(_redir,_errObj) {
@@ -156,16 +156,16 @@ describe('<Unit Test>', function() {
 
         describe('Method destroy', function() {
             beforeEach(function(done) {
-                language = new Language( chai.create('language') );
-                language.save(done);
+                profile = new Profile( chai.create('profile') );
+                profile.save(done);
             });
 
             it('Should remove the document and return a jsonp representation '+
                 ' of the document', function(done) {
-                    req.language = language;
+                    req.profile = profile;
                     res = {
-                        jsonp: function(_language) {
-                            expect(_language._id).to.equal(language._id);
+                        jsonp: function(_profile) {
+                            expect(_profile._id).to.equal(profile._id);
                             done();
                         },
                         send: function(_redir,_errObj) {
@@ -180,16 +180,16 @@ describe('<Unit Test>', function() {
 
         describe('Method show', function() {
             beforeEach(function(done) {
-                language = new Language( chai.create('language') );
-                language.save(done);
+                profile = new Profile( chai.create('profile') );
+                profile.save(done);
             });
 
             it('Should return a jsonp representation '+
                 ' of the requested document', function(done) {
-                    req.language = language;
+                    req.profile = profile;
                     res = {
-                        jsonp: function(_language) {
-                            expect(_language._id).to.equal(language._id);
+                        jsonp: function(_profile) {
+                            expect(_profile._id).to.equal(profile._id);
                             done();
                         },
                         send: function(_redir,_errObj) {
@@ -203,16 +203,16 @@ describe('<Unit Test>', function() {
 
         describe('Method all', function() {
             beforeEach(function(done) {
-                language = new Language( chai.create('language') );
-                language.save(done);
+                profile = new Profile( chai.create('profile') );
+                profile.save(done);
             });
 
             it('Should return a jsonp representation '+
                 ' of all the documents in the collection', function(done) {
                     res = {
-                        jsonp: function(_language) {
-                            // console.log(_language);
-                            expect(_language).to.be.an('Array');
+                        jsonp: function(_profile) {
+                            // console.log(_profile);
+                            expect(_profile).to.be.an('Array');
                             done();
                         },
                         send: function(_redir,_errObj) {
@@ -226,8 +226,8 @@ describe('<Unit Test>', function() {
 
 
         afterEach(function(done) {
-            Language.remove({}, function(){
-                language = {};
+            Profile.remove({}, function(){
+                profile = {};
                 req = {};
                 res = {};
                 done();

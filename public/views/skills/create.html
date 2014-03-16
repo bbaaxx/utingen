@@ -1,0 +1,56 @@
+<section data-ng-controller="SkillsController">
+	<form class="form-horizontal col-md-6" role="form" data-ng-submit="create()">
+		<div class="form-group">
+			<label for="name" class="col-md-2 control-label">Name</label>
+			<div class="col-md-10">
+				<input type="text" class="form-control" data-ng-model="name" id="name" placeholder="Name" required>
+			</div>
+		</div>
+        <div class="form-group">
+            <label for="related" class="col-md-2 control-label">Related Skills</label>
+            <div class="col-md-10">
+                <input type="text" class="form-control" data-ng-model="related" ng-change="instaSearch()" id="related" placeholder="Related Skills">
+            </div>
+        </div>
+
+        <hr> <!-- The following presents the instaSearch results -->
+
+        <p>Related list</p>
+        <ul class="unstyled">
+            <li ng-repeat="entry in isResults track by $index">
+                {{entry.name}}
+            </li>
+        </ul>
+
+        <hr> <!-- This presents the dimensions array for edition -->
+
+        <h2>Dimensions</h2>
+        <ul class="unstyled">
+            <li ng-repeat="dimension in dimensions">
+                Name: {{dimension.name}} | Description: {{ dimension.description }} | Scale: {{ dimension.scale }}
+            </li>
+        </ul>
+        <div class="form-group">
+            <label for="newd-name" class="col-md-2 control-label">Name</label>
+            <div class="col-md-10">
+                <input type="text" class="form-control" data-ng-model="newdName" id="newd-name" placeholder="Name" required>
+            </div>
+            <label for="newd-description" class="col-md-2 control-label">Description</label>
+            <div class="col-md-10">
+                <input type="text" class="form-control" data-ng-model="newdDescription" id="newd-description" placeholder="Description" required>
+            </div>
+            <label for="newd-scale" class="col-md-2 control-label">Scale</label>
+            <div class="col-md-10">
+                <input type="text" class="form-control" data-ng-model="newdScale" id="newd-scale" placeholder="Scale" required>
+            </div>
+            <p><a href="javascript:" ng-click="addDimension()">Add new</a></p>
+        </div>
+        <hr> <!-- End of stuff pending for merge -->
+
+		<div class="form-group">
+			<div class="col-md-offset-2 col-md-10">
+				<button type="submit" class="btn btn-default">Submit</button>
+			</div>
+		</div>
+	</form>
+</section>

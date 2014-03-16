@@ -31,6 +31,7 @@ var DossierSchema = new Schema({
         type: Schema.ObjectId,
         ref: 'User'
     }
+
 });
 
 /**

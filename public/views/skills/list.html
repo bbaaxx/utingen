@@ -1,0 +1,11 @@
+<section data-ng-controller="SkillsController" data-ng-init="find()">
+	<ul class="skills unstyled">
+		<li data-ng-repeat="skill in skills">
+			<span>{{skill.created | date:'medium'}}</span> /
+			<span>{{skill.user.name}}</span>
+			<h2><a data-ng-href="#!/skills/{{skill._id}}">{{skill.name}}</a></h2>
+			<div>{{skill}}</div>
+		</li>
+	</ul>
+	<h1 data-ng-hide="!skills || skills.length">No skills yet. <br> Why don't you <a href="/#!/skills/create">Create One</a>?</h1>
+</section>

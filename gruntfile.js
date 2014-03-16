@@ -72,7 +72,7 @@ module.exports = function(grunt) {
             },
             ci: {
                 options: {
-                    reporter: 'spec',
+                    reporter: 'nyan',
                     require: 'server.js'
                 },
                 src: ['test/mocha/**/*.js']

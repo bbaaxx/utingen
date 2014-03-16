@@ -25,23 +25,43 @@ angular.module('mean').config(['$stateProvider', '$urlRouterProvider',
         templateUrl: 'views/articles/view.html'
     })
 
-      .state('all dossiers', {
-        url: '/dossiers',
-        templateUrl: 'views/dossiers/list.html'
+    // Profile routes
+      .state('all profiles', {
+        url: '/profiles',
+        templateUrl: 'views/profiles/list.html'
     })
-      .state('create dossier', {
-        url: '/dossiers/create',
-        templateUrl: 'views/dossiers/create.html'
+      .state('create profile', {
+        url: '/profiles/create',
+        templateUrl: 'views/profiles/create.html'
     })
-      .state('edit dossier', {
-        url: '/dossiers/:dossierId/edit',
-        templateUrl: 'views/dossiers/edit.html'
+      .state('edit profile', {
+        url: '/profiles/:profileId/edit',
+        templateUrl: 'views/profiles/edit.html'
     })
-      .state('dossier by id', {
-        url: '/dossiers/:dossierId',
-        templateUrl: 'views/dossiers/view.html'
+      .state('profile by id', {
+        url: '/profiles/:profileId',
+        templateUrl: 'views/profiles/view.html'
     })
 
+    // Skill routes
+      .state('all skills', {
+        url: '/skills',
+        templateUrl: 'views/skills/list.html'
+    })
+      .state('create skill', {
+        url: '/skills/create',
+        templateUrl: 'views/skills/create.html'
+    })
+      .state('edit skill', {
+        url: '/skills/:skillId/edit',
+        templateUrl: 'views/skills/edit.html'
+    })
+      .state('skill by id', {
+        url: '/skills/:skillId',
+        templateUrl: 'views/skills/view.html'
+    })
+
+    // Default state
       .state('home', {
         url: '/',
         templateUrl: 'views/index.html'

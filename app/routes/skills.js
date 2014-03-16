@@ -34,8 +34,12 @@ module.exports = function(app) {
         //hasAuthorization,
         skills.destroy
         );
+    app.get('/skills/is/:isQry',
+        //authorization.requiresLogin,
+        //hasAuthorization,
+        skills.instaSearch
+        );
 
     // Finish with setting up the skillId param
     app.param('skillId', skills.skill);
-
 };

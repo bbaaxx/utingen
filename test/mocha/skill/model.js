@@ -40,6 +40,18 @@ describe('<Unit Test>', function() {
                         done();
                     });
                 });
+
+            it('should make a name search using first two chars '+
+                'of an expression', function(done) {
+                    skill.name = 'swt';
+                    return skill.save(function(err,ret) {
+                        should.not.exist(err);
+                        Skill.instaSearch('sw', function(err, tgy){
+                            ret.name.should.be.eq(tgy[0].name);
+                            done();
+                        });
+                    });
+                });
         });
 
         afterEach(function(done) {

@@ -58,4 +58,12 @@ SkillSchema.statics.load = function(id, cb) {
         exec(cb);
 };
 
+SkillSchema.statics.instaSearch = function(qp, cb) {
+    var qe = new RegExp( qp.toString(), 'i');
+    this.find({ name: qe }).
+        //populate('user', 'name username').
+        limit(10).
+        exec(cb);
+};
+
 mongoose.model('Skill', SkillSchema);
