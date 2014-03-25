@@ -35,7 +35,7 @@ describe('<Unit Test>', function() {
                 });
             });
 
-            it('should be able to save whithout problems', function(done) {
+            it('should be able to save without problems', function(done) {
                 user.save(done);
             });
 
@@ -57,7 +57,7 @@ describe('<Unit Test>', function() {
         });
 
         after(function(done) {
-            User.remove().exec();
+            user.remove();
             done();
         });
     });

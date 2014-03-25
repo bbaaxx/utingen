@@ -48,8 +48,8 @@ describe('<Unit Test>', function() {
         });
 
         afterEach(function(done) {
-            Article.remove({});
-            User.remove({});
+            article.remove();
+            user.remove();
             done();
         });
         after(function(done) {
